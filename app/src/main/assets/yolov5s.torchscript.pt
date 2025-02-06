@@ -1,0 +1,11 @@
+import torch
+from pathlib import Path
+
+# Load YOLOv5 model
+model = torch.hub.load("ultralytics/yolov5", "yolov5s", pretrained=True)
+
+# Convert to TorchScript
+model_scripted = torch.jit.script(model)
+model_scripted.save("yolov5s.torchscript.pt")
+
+print("Model converted to TorchScript format.")
